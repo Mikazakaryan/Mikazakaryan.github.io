@@ -1,18 +1,8 @@
-import React, { useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-
-import Notification from "./Notification";
+import React from "react";
 
 const Person = ({ fullName, email, phone, links = [] }) => {
-  const [copied, setCopied] = useState(false);
-
   return (
     <>
-      <Notification
-        text="Copied To Clipboard"
-        isOpen={copied}
-        onHide={() => setCopied(false)}
-      />
       <div
         style={{
           display: "flex",
@@ -22,29 +12,10 @@ const Person = ({ fullName, email, phone, links = [] }) => {
         }}
       >
         <div style={{ fontSize: "56px", fontWeight: "bold" }}>{fullName}</div>
-        <CopyToClipboard text={email} onCopy={() => setCopied(true)}>
-          <div
-            style={{ cursor: "pointer", fontSize: "20px", marginTop: "8px" }}
-          >
-            E-mail: {email}{" "}
-            <span style={{ fontSize: "12px", color: "gray" }}>
-              click to copy
-            </span>
-          </div>
-        </CopyToClipboard>
-        <CopyToClipboard
-          text={phone.split(" ").join("")}
-          onCopy={() => setCopied(true)}
-        >
-          <div
-            style={{ cursor: "pointer", fontSize: "20px", marginTop: "8px" }}
-          >
-            Phone: {phone}{" "}
-            <span style={{ fontSize: "12px", color: "gray" }}>
-              click to copy
-            </span>
-          </div>
-        </CopyToClipboard>
+        <div style={{ fontSize: "20px", marginTop: "8px" }}>
+          E-mail: {email}
+        </div>
+        <div style={{ fontSize: "20px", marginTop: "8px" }}>Phone: {phone}</div>
         {links.map((el) => (
           <div style={{ fontSize: "20px", marginTop: "8px" }} key={el.link}>
             <a href={el.link}>{el.name}</a>
